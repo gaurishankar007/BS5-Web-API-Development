@@ -1,0 +1,21 @@
+User {
+
+},
+
+Personal Detail {
+	Permanent Address {
+
+	},	
+	Temporary Address {
+
+	}
+},
+
+Post {
+	Image {
+	
+	},
+	Tag Friend {
+
+	}
+}

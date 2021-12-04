@@ -1,0 +1,14 @@
+Block {
+--> They will know that the person has blocked them.
+--> Will not see posts eventhough they searched the person who blocked them, 
+    only the numbers will be shown. Will not be notified about the person's activities.
+--> Can not message that person.
+--> Can not tag them.
+}
+
+Restrict {
+--> They will not know that the person has restricted them.
+--> Will see posts, can comment on the posts but other person will not see the comments.
+--> Person will not be notified about the comments and message. Person have to manually check it.
+--> Can tag them.
+}
