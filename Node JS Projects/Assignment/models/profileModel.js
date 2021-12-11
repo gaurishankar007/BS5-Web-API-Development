@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+require("./userModel.js");
 
 const profile = mongoose.model("Profile", {
     user_id: {
-        type: mongoose.Schema.Types.ObjectId, ref: "User" // Referring object_id from user module
+        type: mongoose.Types.ObjectId, ref: "user" // Referring object_id from user module
     },
     first_name: {
         type: String
@@ -16,9 +17,9 @@ const profile = mongoose.model("Profile", {
     birthday: {
         type: Date
     },
-    hobbies: {
-        type: String
-    },
+    hobbies:[ 
+        {type: String}
+    ],
     biography: {
         type: String
     }

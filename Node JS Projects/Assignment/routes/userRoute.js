@@ -1,6 +1,7 @@
 const express = require("express");
 const router = new express.Router();
 const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const user = require("../models/userModel.js");
 
@@ -42,6 +43,30 @@ router.post("/user/register", (req, res) => {
             });
         });
     })
+});
+
+// login route for user
+router.post("/user/login", (req, res)=> {
+    const username = req.body.username;
+    const password = req.body.password;
+    const email = req.body.email;
+    user.findOne({username: username}).then((userData)=> {
+        if(userData==null) {
+            return res.json({message: "username does not exist.", warning: "Do not get it incorrect multiple times"});
+        }
+        else {
+            // now comparing client password with the given password
+            bcryptjs.compare(password, userData.password, function(e, result){
+                if(!result) {
+                    return res.json({message: "Incorrect password, try again."});
+                }
+                // now lets generate token
+                const token = jwt.sign({userId: userData._id}, "mountainDuke");
+                res.json({token: token, message: "Success"});
+                
+            });
+        }
+    });
 });
 
 module.exports = router;
