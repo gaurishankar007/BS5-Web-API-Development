@@ -2,6 +2,7 @@ const express = require("express");
 const router = new express.Router();
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const validator = require("validator");
 
 const user = require("../models/userModel.js");
 const auth = require("../auth/auth.js");
@@ -32,7 +33,7 @@ router.post("/user/register", (req, res) => {
                     profile_pic: profile_pic,
                     cover_pic: cover_pic,
                     email: email,
-                    phone: phone
+                    phone: phone,
                 });
                 newUser.save()
                 .then(function() {
@@ -46,32 +47,56 @@ router.post("/user/register", (req, res) => {
     })
 });
 
-// login route for user
+// login route for user using username or email
 router.post("/user/login", (req, res)=> {
     const username = req.body.username;
     const password = req.body.password;
     const email = req.body.email;
     user.findOne({username: username}).then((userData)=> {
         if(userData==null) {
-            return res.json({message: "username does not exist.", warning: "Do not get it incorrect multiple times"});
+            user.findOne({email: email}).then((userData1)=> {
+                if(!validator.isEmail(email)) {
+                    return res.json({message: "User with that username does not exist or provide valid email address."});
+                }
+                else if(userData1==null) {
+                    return res.json({message: "User with that email address does not exist."});
+                }
+                // now comparing client password with the given password
+                bcryptjs.compare(password, userData1.password, function(e, result){
+                    if(!result) {
+                        res.json({message: "Incorrect password, try again."});
+                    }
+                    else {                        
+                        // now lets generate token
+                        const token = jwt.sign({userId: userData1._id}, "mountainDuke");
+                        res.json({token: token, message: "Success"});  
+                    }          
+                }); 
+            });
         }
-        // now comparing client password with the given password
-        bcryptjs.compare(password, userData.password, function(e, result){
-            if(!result) {
-                return res.json({message: "Incorrect password, try again."});
-            }
-            // now lets generate token
-            const token = jwt.sign({userId: userData._id}, "mountainDuke");
-            res.json({token: token, message: "Success"});            
-        });
+        else {            
+            // now comparing client password with the given password
+            bcryptjs.compare(password, userData.password, function(e, result){
+                if(!result) {
+                    return res.json({message: "Incorrect password, try again."});
+                }
+                // now lets generate token
+                const token = jwt.sign({userId: userData._id}, "mountainDuke");
+                res.json({token: token, message: "Success"});            
+            });
+        }
     });
 });
 
-router.delete("/test", auth.verifyUser, function(req, res){
-    res.json({message: "deleted"});
+router.get("/testUser", auth.verifyUser, function(req, res) {
+    res.json({message: "user phone number: "+ req.userInfo.phone + "."});
 });
 
-router.get("/phone", auth.verifyUser, function(req, res){
-    res.json({message: "user phone number: "+req.userInfo.phone+"."});
+router.get("/testAdmin", auth.verifyAdmin, function(req, res) {
+    res.json({message: "success"});
+});
+
+router.get("/testSuper", auth.verifyAdmin, function(req, res) {
+    res.json({message: "success"});
 });
 module.exports = router;
