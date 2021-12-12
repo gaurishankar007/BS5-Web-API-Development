@@ -30,7 +30,7 @@ router.get("/user/get/:profile_id", function(req, res){
             return res.json({message: "Profile does not exist."});
         }
         user.findOne({_id: profileData.user_id}).then(function(userData){
-            return res.json({message: "This profile belongs to user '"+userData.username+"'."})
+            return res.json({message: "This profile be longs to user '"+userData.username+"'."})
         });
     });
 });

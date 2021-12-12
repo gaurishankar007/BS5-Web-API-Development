@@ -1,35 +1,110 @@
-const user = [
-    {
-        "_id": "619f23bc549eb2bf8c8ff314",
-        "username": "Gauri",
-        "phone": "9816346714",
-        "address": "Morang, Sundarharaincha-1",
-        "__v": 0
+const chats = [
+  {
+    isGroupChat: false,
+    users: [
+      {
+        name: "John Doe",
+        email: "john@example.com",
+      },
+      {
+        name: "Piyush",
+        email: "piyush@example.com",
+      },
+    ],
+    _id: "617a077e18c25468bc7c4dd4",
+    chatName: "John Doe",
+  },
+  {
+    isGroupChat: false,
+    users: [
+      {
+        name: "Guest User",
+        email: "guest@example.com",
+      },
+      {
+        name: "Piyush",
+        email: "piyush@example.com",
+      },
+    ],
+    _id: "617a077e18c25468b27c4dd4",
+    chatName: "Guest User",
+  },
+  {
+    isGroupChat: false,
+    users: [
+      {
+        name: "Anthony",
+        email: "anthony@example.com",
+      },
+      {
+        name: "Piyush",
+        email: "piyush@example.com",
+      },
+    ],
+    _id: "617a077e18c2d468bc7c4dd4",
+    chatName: "Anthony",
+  },
+  {
+    isGroupChat: true,
+    users: [
+      {
+        name: "John Doe",
+        email: "jon@example.com",
+      },
+      {
+        name: "Piyush",
+        email: "piyush@example.com",
+      },
+      {
+        name: "Guest User",
+        email: "guest@example.com",
+      },
+    ],
+    _id: "617a518c4081150716472c78",
+    chatName: "Friends",
+    groupAdmin: {
+      name: "Guest User",
+      email: "guest@example.com",
     },
-
-    {
-        "_id":  "61a318bf7b6fab8649113fcb",
-        "username": "Shyam",
-        "phone": "9801236547",
-        "address": "Thamel",
-        "__v": 0
+  },
+  {
+    isGroupChat: false,
+    users: [
+      {
+        name: "Jane Doe",
+        email: "jane@example.com",
+      },
+      {
+        name: "Piyush",
+        email: "piyush@example.com",
+      },
+    ],
+    _id: "617a077e18c25468bc7cfdd4",
+    chatName: "Jane Doe",
+  },
+  {
+    isGroupChat: true,
+    users: [
+      {
+        name: "John Doe",
+        email: "jon@example.com",
+      },
+      {
+        name: "Piyush",
+        email: "piyush@example.com",
+      },
+      {
+        name: "Guest User",
+        email: "guest@example.com",
+      },
+    ],
+    _id: "617a518c4081150016472c78",
+    chatName: "Chill Zone",
+    groupAdmin: {
+      name: "Guest User",
+      email: "guest@example.com",
     },
+  },
+];
 
-    {
-        "_id": "61a99818ab68acafb4a12acc",
-        "username": "Shikhar",
-        "phone": "9874563210",
-        "address": "Suryabinayak",
-        "__v": 0
-    },
-
-    {
-        "_id":  "61ac55b90646a31c1641f173",
-        "username": "Nishan",
-        "phone": "$2a$10$BoO/gaISNIyb3HgtlASRcuXzGBumsmCLKnvMDRWSc4uVVloV4qA/K",
-        "address": "Koteshore",
-        "__v": 0
-    }
-]
-
-module.exports = user;
+module.exports=chats;

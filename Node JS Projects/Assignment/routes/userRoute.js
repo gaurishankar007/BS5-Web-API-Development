@@ -4,6 +4,7 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const user = require("../models/userModel.js");
+const auth = require("../auth/auth.js");
 
 router.post("/user/register", (req, res) => {
     const username = req.body.username;
@@ -54,19 +55,23 @@ router.post("/user/login", (req, res)=> {
         if(userData==null) {
             return res.json({message: "username does not exist.", warning: "Do not get it incorrect multiple times"});
         }
-        else {
-            // now comparing client password with the given password
-            bcryptjs.compare(password, userData.password, function(e, result){
-                if(!result) {
-                    return res.json({message: "Incorrect password, try again."});
-                }
-                // now lets generate token
-                const token = jwt.sign({userId: userData._id}, "mountainDuke");
-                res.json({token: token, message: "Success"});
-                
-            });
-        }
+        // now comparing client password with the given password
+        bcryptjs.compare(password, userData.password, function(e, result){
+            if(!result) {
+                return res.json({message: "Incorrect password, try again."});
+            }
+            // now lets generate token
+            const token = jwt.sign({userId: userData._id}, "mountainDuke");
+            res.json({token: token, message: "Success"});            
+        });
     });
 });
 
+router.delete("/test", auth.verifyUser, function(req, res){
+    res.json({message: "deleted"});
+});
+
+router.get("/phone", auth.verifyUser, function(req, res){
+    res.json({message: "user phone number: "+req.userInfo.phone+"."});
+});
 module.exports = router;
