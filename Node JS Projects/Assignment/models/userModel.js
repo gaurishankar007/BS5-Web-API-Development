@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const user = mongoose.model("User", {
     username: {
-        type: String
+        type: String, unique: true
     },
     password: {
         type: String
@@ -14,10 +14,10 @@ const user = mongoose.model("User", {
         type: String
     },
     email: {
-        type: String
+        type: String, unique: true
     },
     phone: {
-        type: Number
+        type: Number,
     },
     admin: {
         type: Boolean, default: false

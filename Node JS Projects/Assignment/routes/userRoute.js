@@ -96,7 +96,7 @@ router.get("/testAdmin", auth.verifyAdmin, function(req, res) {
     res.json({message: "success"});
 });
 
-router.get("/testSuper", auth.verifyAdmin, function(req, res) {
+router.get("/testSuper", auth.verifySuper, function(req, res) {
     res.json({message: "success"});
 });
 module.exports = router;
