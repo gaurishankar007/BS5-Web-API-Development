@@ -12,6 +12,9 @@ app.get("/", (req, res) => {
 userRoutes = require("./routes/userRoutes")
 app.use('/api/user', userRoutes);
 
+chatRoutes = require("./routes/chatRoutes")
+app.use('/api/chat', chatRoutes);
+
 
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 // Error Handling middlewares
