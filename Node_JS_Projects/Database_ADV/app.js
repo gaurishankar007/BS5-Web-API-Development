@@ -8,8 +8,7 @@ require("./database/db");
 const userRoute = require("./routes/userRoute");
 app.use(userRoute);
 
-
-// const productRoute = require("./routes/ProductRoute");
-// app.use(productRoute);
+const productRoute = require("./routes/ProductRoute");
+app.use(productRoute);
 
 app.listen(80);

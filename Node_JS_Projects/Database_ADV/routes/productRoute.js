@@ -1,7 +1,7 @@
 const express = require("express");
 const router = new express.Router();
 
-const product = require("../modules/productModel");
+const product = require("../models/productModel");
 
 /*
 const productData  = new product({
