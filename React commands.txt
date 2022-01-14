@@ -1,0 +1,7 @@
+1. Create a react app {
+	npx create-react-app APPNAME
+}
+
+2. Installing router {
+	npm i react-router-dom
+}
