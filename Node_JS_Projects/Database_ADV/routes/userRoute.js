@@ -16,14 +16,16 @@ userData.save();
 */
 
 router.post("/user/insert", function(req, res) {
-    res.send("Hello there! new user has been added.")
     console.log("Username: " + req.body.username+ ", Address: "+ req.body.address);
     const username = req.body.username;
     const phone = req.body.phone;
     const address = req.body.address;
     bcryptjs.hash(phone, 10, function(e, hashed_value11){
         const userData = new user({username: username, phone: hashed_value11, address: address});
-        userData.save();
+        userData.save().then(()=> {            
+            res.json({message: "Register Success"});
+        }
+        );
     });
 });
 

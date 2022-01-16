@@ -14,6 +14,8 @@ class Header extends Component {
                 <Link to='/Contact'>Contact Us</Link>
                 <div></div>
                 <Link to='/Product/12345'>Product</Link>
+                <div></div>
+                <Link to="/User/Register">User Register</Link>
             </div>
            </div>
         )

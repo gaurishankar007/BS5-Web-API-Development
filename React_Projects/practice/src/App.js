@@ -18,7 +18,9 @@ function App() {
      <Header username={data.username} add="Morang"></Header>
      <h1>Welcome {name}</h1>
      <p>{data.username}, {data.address}</p>
+     <div></div>
      <Mid></Mid>
+     <div></div>
      <div>This is my first app..</div>
      <div>This is the second paragraph..</div>
      <div className='abc'>What's up man?</div>

@@ -5,3 +5,7 @@
 2. Installing router {
 	npm i react-router-dom
 }
+
+3. Installing axios {
+	npm i axios
+}
