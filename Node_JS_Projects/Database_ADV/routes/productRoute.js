@@ -1,7 +1,7 @@
 const express = require("express");
 const router = new express.Router();
-
 const product = require("../models/productModel");
+const auth = require("../auth/auth");
 
 /*
 const productData  = new product({
@@ -13,10 +13,12 @@ const productData  = new product({
 productData.save();
 */
  
-router.post("/product/insert", function(req, res){
+router.post("/product/insert", auth.verifyUser, function(req, res){
     res.send("Hello there! new product has been added.");
     const productData = new product(req.body);
-    productData.save();
+    productData.save().then(()=> {            
+        res.json({message: "Product added successfully."});
+    });
 });
 
 router.delete("/product/delete/:id", function(req, res) {
