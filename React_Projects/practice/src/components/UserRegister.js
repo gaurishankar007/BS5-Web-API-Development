@@ -35,7 +35,7 @@ const UserRegister = ()=> {
                 <label for="address">Address</label>
                 <input type="text" className="form-control" id="address"  placeholder="Enter your address" onChange={(e)=>setAddress(e.target.value)}/>
             </div>
-            <button type="btn" className="btn btn-primary mt-2 text-center" onClick={userRegister}>Submit</button>
+            <button type="btn" className="btn btn-primary mt-2" onClick={userRegister}>Submit</button>
         </form>
         </div>
     )

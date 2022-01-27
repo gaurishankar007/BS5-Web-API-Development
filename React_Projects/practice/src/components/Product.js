@@ -12,8 +12,14 @@ const Product = ()=> {
     const addProduct = (e)=> {
         e.preventDefault();
         const productData = {pName, pPrice, pColor};
-        axios.post("http://localhost:80/product/insert", productData).then((result)=> {
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        }
+        axios.post("http://localhost:80/product/insert", productData, config).then((result)=> {
             setMsg(result.data.message);
+            console.log(result);
         });
     }
 

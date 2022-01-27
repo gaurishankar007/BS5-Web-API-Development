@@ -8,17 +8,12 @@ module.exports.verifyUser = function(req, res, next) {
         const userData = jwt.verify(token, "loginKey");
         user.findOne({_id: userData.userId}).then((nUser)=>{
             req.userInfo = nUser;
-            if (nUser.admin==false && nUser.superuser==false) {
-                next();
-            }
-            else {
-                res.json({message: "Only normal users are allowed. Not for admin or super users."});
-            }
+            next();
         }).catch(function(e){
             res.json({error: e});
         });
     }
     catch(e) {
-        res.json({error: e});
+        res.json({message: "Invalid Token!"});
     }
 } 

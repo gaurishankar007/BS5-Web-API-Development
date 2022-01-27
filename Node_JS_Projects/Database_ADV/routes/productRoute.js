@@ -14,7 +14,6 @@ productData.save();
 */
  
 router.post("/product/insert", auth.verifyUser, function(req, res){
-    res.send("Hello there! new product has been added.");
     const productData = new product(req.body);
     productData.save().then(()=> {            
         res.json({message: "Product added successfully."});
