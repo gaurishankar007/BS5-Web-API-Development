@@ -20,10 +20,18 @@ router.post("/product/insert", auth.verifyUser, function(req, res){
     });
 });
 
+router.get("/product/get", auth.verifyUser, async function(req, res) {
+    const productData = await product.find();
+    res.status(200).send(productData);
+});
+
 router.delete("/product/delete/:id", function(req, res) {
-    res.send("product has been deleted successfully.");
     const id = req.params.id;
-    product.findByIdAndDelete(id).then().catch();
+    product.findByIdAndDelete(id).then(()=> {        
+        res.send("product has been deleted successfully.");
+    }).catch((e)=> {
+        console.log(e);
+    });
 });
 
 router.put("/product/update", function(req, res) {    

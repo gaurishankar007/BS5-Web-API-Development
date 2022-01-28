@@ -6,6 +6,7 @@ import Contact from "./Contact";
 import Product from "./Product";
 import UserRegister from "./UserRegister";
 import UserLogin from "./UserLogin";
+import ViewProduct from "./ViewProducts";
 
 // class based component
 class Mid extends Component {
@@ -18,6 +19,7 @@ class Mid extends Component {
                     <Route path="/Contact" element={<Contact></Contact>}/>
                     <Route path="/Product/:id" element={<Product></Product>}/>
                     <Route path="/User/Register" element={<UserRegister></UserRegister>}/>
+                    <Route path="/View/Product" element={<ViewProduct/>}/>
                     <Route path="/User/Login" element={<UserLogin></UserLogin>}/>
                 </Routes>
             </div>
