@@ -25,7 +25,7 @@ router.get("/product/get", auth.verifyUser, async function(req, res) {
     res.status(200).send(productData);
 });
 
-router.delete("/product/delete/:id", function(req, res) {
+router.delete("/product/delete/:id", auth.verifyUser, function(req, res) {
     const id = req.params.id;
     product.findByIdAndDelete(id).then(()=> {        
         res.send("product has been deleted successfully.");
@@ -34,17 +34,21 @@ router.delete("/product/delete/:id", function(req, res) {
     });
 });
 
-router.put("/product/update", function(req, res) {    
-    res.send("product has been updated successfully.");
-    const id = req.body.myid;
+router.get("/product/update/:pId", auth.verifyUser, function(req, res) { 
+    const id = req.params.pId;
+    product.findById(id).then((result)=>  {
+        res.status(200).send(result);
+    });
+});
+
+router.put("/product/update", auth.verifyUser,  function(req, res) {  
+    const id = req.body.pid;
     const name = req.body.name;
     const price = req.body.price;
-    product.updateOne({_id: id}, {pName: name, pPrice: price}).then().catch();
-    // postman body
-    // {
-    //     "myid": "61a31ce3da5833ecdf61d5d4",
-    //     "name": "HDMI Cable"
-    // }
+    const color = req.body.color;
+    product.updateOne({_id: id}, {pName: name, pPrice: price, pColor: color}).then((result)=> {
+        res.status(200).send({message: "Product Updated"});
+    }).catch();
 });
 
 // router.delete("/product/delete/:id", function(req, res) {

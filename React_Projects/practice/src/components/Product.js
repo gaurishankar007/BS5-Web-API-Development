@@ -9,6 +9,7 @@ const Product = ()=> {
     const [pPrice, setPrice] = useState("");
     const [pColor, setColor] = useState("");
     const [msg, setMsg] = useState("");
+    
     const addProduct = (e)=> {
         e.preventDefault();
         const productData = {pName, pPrice, pColor};

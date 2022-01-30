@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from "axios";
 
 const ViewProduct = ()=> {
@@ -39,7 +39,10 @@ const ViewProduct = ()=> {
                         <h2>Product Name: {singleData.pName}</h2>
                         <p>Product Price: {singleData.pPrice}</p>
                         <p>Product Color: {singleData.pColor}</p>
-                        <button className="btn btn-primary" onClick={()=>{deleteProduct(singleData._id)}}>{singleData._id}</button>
+                        <div className='d-flex flex-column justify-content-center align-items-center'>
+                        <button className="btn btn-primary mb-2" onClick={()=>{deleteProduct(singleData._id)}}>Delete product</button>
+                        <Link className="btn btn-primary" to={"/Update/Product/"+singleData._id}>Update product</Link>
+                            </div>
                     </div>
                 )
             })}
