@@ -9,6 +9,9 @@ const product = mongoose.model('Product', {
     },
     pColor: {
         type: String
+    },
+    pImage: {
+        type: String
     }
 });
 

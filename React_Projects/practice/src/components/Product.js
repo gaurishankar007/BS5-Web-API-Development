@@ -9,10 +9,16 @@ const Product = ()=> {
     const [pPrice, setPrice] = useState("");
     const [pColor, setColor] = useState("");
     const [msg, setMsg] = useState("");
+    const [pImage, setPImage] = useState("");
     
     const addProduct = (e)=> {
         e.preventDefault();
-        const productData = {pName, pPrice, pColor};
+        const productData = new FormData();
+        productData.append("pName", pName);
+        productData.append("pPrice", pPrice);
+        productData.append("pColor", pColor);
+        productData.append("product_image", pImage);
+
         const config = {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -41,6 +47,10 @@ const Product = ()=> {
                 <div className="form-group">
                     <label for="price">Product Color</label>
                     <input type="text" className="form-control" id="price" placeholder="Enter product's color" onChange={(e)=>setColor(e.target.value)}/>
+                </div>                
+                <div className="form-group">
+                    <label for="price">Product Image</label>
+                    <input type="file" className="form-control" id="price" placeholder="Enter product's color" onChange={(e)=>setPImage(e.target.files[0])}/>
                 </div>  
                 <button type="btn" className="btn btn-primary mt-2 text-center" onClick={addProduct}>Submit</button>
             </form>

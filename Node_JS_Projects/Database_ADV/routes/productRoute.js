@@ -2,6 +2,7 @@ const express = require("express");
 const router = new express.Router();
 const product = require("../models/productModel");
 const auth = require("../auth/auth");
+const productFile = require("../upload/setting/product");
 
 /*
 const productData  = new product({
@@ -13,8 +14,17 @@ const productData  = new product({
 productData.save();
 */
  
-router.post("/product/insert", auth.verifyUser, function(req, res){
-    const productData = new product(req.body);
+router.post("/product/insert", auth.verifyUser, productFile.single("product_image"), function(req, res){
+    const pName = req.body.pName;
+    const pPrice = req.body.pPrice;
+    const pColor = req.body.pColor;
+    const pImage = req.file.filename;
+    const productData = new product({
+            pName: pName,
+            pPrice: pPrice,
+            pColor: pColor,
+            pImage: pImage
+        });
     productData.save().then(()=> {            
         res.json({message: "Product added successfully."});
     });
