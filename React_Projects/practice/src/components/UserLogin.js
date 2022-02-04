@@ -12,6 +12,7 @@ const UserLogin = ()=> {
             setMsg(result.data.message);
             if(result.data.token) {
                 localStorage.setItem('token', result.data.token);
+                window.location.replace("/View/Product");
             }
         });
     }
