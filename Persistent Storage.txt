@@ -1,0 +1,10 @@
+Cover page with your name - Id - Title of your project
+Explain about the database chosen
+Explain why did yo choose the particular database
+Explain the advantage and disadvante of the database.
+Explain the structure or design
+Explain everthing with screenshots.
+Explain the datab types
+Show the schema screenshots
+Explain the relationhip between models of available.
+Show the screenshot of the database
